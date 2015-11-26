@@ -69,13 +69,21 @@ namespace HashTables {
 
         public ICollection<TKey> Keys {
             get {
-                throw new NotImplementedException();
+                LinkedList<TKey> keys = new LinkedList<TKey>();
+                foreach( KeyValuePair<TKey, TValue> pair in this ) {
+                    keys.AddFirst( pair.Key );
+                }
+                return keys;
             }
         }
 
         public ICollection<TValue> Values {
             get {
-                throw new NotImplementedException();
+                LinkedList<TValue> values = new LinkedList<TValue>();
+                foreach( KeyValuePair<TKey, TValue> pair in this ) {
+                    values.AddFirst( pair.Value );
+                }
+                return values;
             }
         }
 
