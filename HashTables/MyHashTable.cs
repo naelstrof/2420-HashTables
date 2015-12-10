@@ -20,7 +20,8 @@ namespace HashTables {
 
         public TValue this[TKey key] {
             get {
-                int index = key.GetHashCode()%size;
+                int hash = Math.Abs(key.GetHashCode());
+                int index = hash%size;
                 if ( baseArray[index] == null ) {
                     throw new KeyNotFoundException();
                 }
@@ -32,7 +33,8 @@ namespace HashTables {
                 throw new KeyNotFoundException();
             }
             set {
-                int index = key.GetHashCode()%size;
+                int hash = Math.Abs(key.GetHashCode());
+                int index = hash%size;
                 if ( baseArray[index] == null ) {
                     baseArray[index] = new LinkedList<KeyValuePair<TKey,TValue>>();
                     baseArray[index].AddFirst( new KeyValuePair<TKey, TValue>( key, value ) );
@@ -92,7 +94,8 @@ namespace HashTables {
         }
 
         public void Add(TKey key, TValue value) {
-            int index = key.GetHashCode()%size;
+            int hash = Math.Abs(key.GetHashCode());
+            int index = hash%size;
             if ( baseArray[index] == null ) {
                 baseArray[index] = new LinkedList<KeyValuePair<TKey,TValue>>();
                 baseArray[index].AddFirst( new KeyValuePair<TKey, TValue>( key, value ) );
@@ -115,7 +118,8 @@ namespace HashTables {
         }
 
         public bool Contains(KeyValuePair<TKey, TValue> item) {
-            int index = item.Key.GetHashCode()%size;
+            int hash = Math.Abs(item.Key.GetHashCode());
+            int index = hash%size;
             if ( baseArray[index] == null ) {
                 return false;
             }
@@ -128,7 +132,8 @@ namespace HashTables {
         }
 
         public bool ContainsKey(TKey key) {
-            int index = key.GetHashCode()%size;
+            int hash = Math.Abs(key.GetHashCode());
+            int index = hash%size;
             if ( baseArray[index] == null ) {
                 return false;
             }
@@ -161,7 +166,8 @@ namespace HashTables {
         }
 
         public bool Remove(KeyValuePair<TKey, TValue> item) {
-            int index = item.Key.GetHashCode()%size;
+            int hash = Math.Abs(item.Key.GetHashCode());
+            int index = hash%size;
             if ( baseArray[index] == null ) {
                 return false;
             }
@@ -171,7 +177,8 @@ namespace HashTables {
         }
 
         public bool Remove(TKey key) {
-            int index = key.GetHashCode()%size;
+            int hash = Math.Abs(key.GetHashCode());
+            int index = hash%size;
             if ( baseArray[index] == null ) {
                 return false;
             }
@@ -186,7 +193,8 @@ namespace HashTables {
 
         public bool TryGetValue(TKey key, out TValue value) {
             value = default(TValue);
-            int index = key.GetHashCode()%size;
+            int hash = Math.Abs(key.GetHashCode());
+            int index = hash%size;
             if ( baseArray[index] == null ) {
                 return false;
             }
